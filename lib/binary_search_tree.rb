@@ -30,7 +30,19 @@ class Tree
     current_node.less_than_value?(value) ? insert(value, current_node.right) : insert(value, current_node.left)
   end
 
+  def find(value, node = @root)
+    return node if empty_root? || node.equal_to_value(value)
+
+    return find(value, node.right) if node.less_than_value?(value)
+
+    find(value, node.left)
+  end
+
   private
+
+  def empty_root?
+    @root.nil? || @root.data.nil?
+  end
 
   def build_tree(array, start_index = 0, end_index = array.length - 1)
     return nil if start_index > end_index

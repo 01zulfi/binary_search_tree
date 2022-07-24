@@ -30,3 +30,11 @@ puts 'Inserting 10000'
 tree.insert(10_000)
 puts ''
 tree.pretty_print
+
+puts '-' * 20
+puts 'Find 0'
+p tree.find(0)
+
+puts '-' * 20
+puts 'Find 23'
+p tree.find(23)
