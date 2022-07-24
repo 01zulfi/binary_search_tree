@@ -38,3 +38,13 @@ p tree.find(0)
 puts '-' * 20
 puts 'Find 23'
 p tree.find(23)
+
+puts '-' * 20
+puts 'Delete 0'
+tree.delete(0)
+tree.pretty_print
+
+puts '-' * 20
+puts 'Delete 24'
+tree.delete(24)
+tree.pretty_print

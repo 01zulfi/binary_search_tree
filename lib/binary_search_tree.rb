@@ -30,6 +30,19 @@ class Tree
     current_node.less_than_value?(value) ? insert(value, current_node.right) : insert(value, current_node.left)
   end
 
+  def delete(value, node = @root)
+    if node.greater_than_value?(value )
+      node.left = delete(value, node.left)
+    elsif node.less_than_value?(value)
+      node.right = delete(value, node.right)
+    else
+      return node.right if left_empty?(node)
+
+      return node.left  if right_empty?(node)
+    end
+    node
+  end
+
   def find(value, node = @root)
     return node if empty_root? || node.equal_to_value(value)
 
@@ -70,5 +83,9 @@ class Tree
 
   def right_empty?(node)
     node.right.nil?
+  end
+
+  def leaf?(node)
+    left_empty?(node) && right_empty?(node)
   end
 end
