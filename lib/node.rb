@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require_relative './comparable'
+
 # class for tree nodes
 class Node
+  include Comparable
+
   attr_reader :data 
   attr_accessor :left, :right
 
