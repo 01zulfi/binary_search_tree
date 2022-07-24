@@ -6,7 +6,7 @@ require_relative './comparable'
 class Node
   include Comparable
 
-  attr_reader :data 
+  attr_reader :data
   attr_accessor :left, :right
 
   def initialize(data, left = nil, right = nil)
