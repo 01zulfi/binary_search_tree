@@ -13,4 +13,8 @@ module Comparable
   def greater_than_value?(value)
     !less_than_value?(value)
   end
+
+  def equal_to_value(value)
+    @data == value
+  end
 end
