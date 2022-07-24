@@ -16,6 +16,20 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true) if node.left
   end
 
+  def insert(value, current_node = @root)
+    if current_node.less_than_value?(value) && right_empty?(current_node)
+      current_node.right = Node.new(value)
+      return
+    end
+
+    if current_node.greater_than_value?(value) && left_empty?(current_node)
+      current_node.left = Node.new(value)
+      return
+    end
+
+    current_node.less_than_value?(value) ? insert(value, current_node.right) : insert(value, current_node.left)
+  end
+
   private
 
   def build_tree(array, start_index = 0, end_index = array.length - 1)
@@ -36,5 +50,13 @@ class Tree
 
   def find_mid(start_num, end_num)
     (start_num + end_num) / 2
+  end
+
+  def left_empty?(node)
+    node.left.nil?
+  end
+
+  def right_empty?(node)
+    node.right.nil?
   end
 end
