@@ -68,7 +68,7 @@ class Tree
   private
 
   def level_order_results(result, &block)
-    block_given? ? result.each { |value| block.call(value) } : result.join(', ')
+    block_given? ? result.each { |value| block.call(value) } : result
   end
 
   def smallest_tree_value(root_node)
