@@ -96,6 +96,37 @@ class Tree
     result << node.data
   end
 
+  def height(node = @root)
+    return -1 if node.nil?
+
+    left = height(node.left)
+    right = height(node.right)
+
+    [left, right].max + 1
+  end
+
+  def depth(node)
+    height - height(node)
+  end
+
+  def balanced?(node = @root)
+    return true if node.nil?
+
+    left_height = height(node.left)
+    right_height = height(node.right)
+
+    left_balanced = balanced?(node.left)
+    right_balanced = balanced?(node.right)
+
+    return true if (left_height - right_height).abs <= 1 && left_balanced && right_balanced 
+
+    false
+  end
+
+  def rebalance
+    @root = build_tree(process(inorder))
+  end
+
   private
 
   def level_order_results(result, &block)

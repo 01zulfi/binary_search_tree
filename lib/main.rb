@@ -74,3 +74,26 @@ p tree.inorder
 puts '-' * 20
 puts 'Postorder traversal'
 p tree.postorder
+
+puts '-' * 20
+puts 'Height'
+p tree.height
+
+puts '-' * 20
+puts 'Height of Node 67'
+p tree.height(tree.find(67))
+
+puts '-' * 20
+puts 'Depth of Node 67'
+p tree.depth(tree.find(67))
+
+puts '-' * 20
+puts 'Balanced'
+p tree.balanced?
+
+puts '-' * 20
+puts 'Rebalanced'
+tree.rebalance
+tree.pretty_print
+
+p tree.balanced?
