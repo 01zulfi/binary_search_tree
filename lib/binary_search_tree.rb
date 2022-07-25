@@ -44,7 +44,7 @@ class Tree
   end
 
   def find(value, node = @root)
-    return node if empty_root? || node.equal_to_value(value)
+    return node if empty_root? || node.equal_to_value?(value)
 
     return find(value, node.right) if node.less_than_value?(value)
 

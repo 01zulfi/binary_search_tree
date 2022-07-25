@@ -14,7 +14,7 @@ module Comparable
     @data > value
   end
 
-  def equal_to_value(value)
+  def equal_to_value?(value)
     @data == value
   end
 end
