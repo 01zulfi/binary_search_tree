@@ -3,6 +3,7 @@
 require_relative './node'
 
 # tree class
+# rubocop:disable Metrics/ClassLength
 class Tree
   attr_reader :root
 
@@ -65,6 +66,36 @@ class Tree
     level_order(current, queue, result.push(current.data), &block)
   end
 
+  def preorder(result = [], node = @root, &block)
+    if node.nil?
+      return block_given? ? result.each { |value| block.call(value) } : result
+    end
+
+    result << node.data
+    preorder(result, node.left, &block)
+    preorder(result, node.right, &block)
+  end
+
+  def inorder(result = [], node = @root, &block)
+    if node.nil?
+      return block_given? ? result.each { |value| block.call(value) } : result
+    end
+
+    inorder(result, node.left, &block)
+    result << node.data
+    inorder(result, node.right, &block)
+  end
+
+  def postorder(result = [], node = @root, &block)
+    if node.nil?
+      return block_given? ? result.each { |value| block.call(value) } : result
+    end
+
+    postorder(result, node.left, &block)
+    postorder(result, node.right, &block)
+    result << node.data
+  end
+
   private
 
   def level_order_results(result, &block)
@@ -113,3 +144,4 @@ class Tree
     left_empty?(node) && right_empty?(node)
   end
 end
+# rubocop:enable Metrics/ClassLength

@@ -62,3 +62,15 @@ p tree.level_order
 puts '-' * 20
 puts 'Level order traversal with yield'
 tree.level_order { |value| p "yielded #{value}" }
+
+puts '-' * 20
+puts 'Preorder traversal'
+p tree.preorder
+
+puts '-' * 20
+puts 'Inorder traversal'
+p tree.inorder
+
+puts '-' * 20
+puts 'Postorder traversal'
+p tree.postorder
