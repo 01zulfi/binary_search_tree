@@ -54,3 +54,11 @@ puts '-' * 20
 puts 'Delete 8'
 tree.delete(8)
 tree.pretty_print
+
+puts '-' * 20
+puts 'Level order traversal'
+p tree.level_order
+
+puts '-' * 20
+puts 'Level order traversal with yield'
+tree.level_order { |value| p "yielded #{value}" }

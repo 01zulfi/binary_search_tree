@@ -54,7 +54,22 @@ class Tree
     find(value, node.left)
   end
 
+  def level_order(node = @root, queue = [node], result = [], &block)
+    return if node.nil?
+    return level_order_results(result, &block) if queue.empty?
+
+    current = queue.first
+    queue << current.left unless left_empty?(current)
+    queue << current.right unless right_empty?(current)
+    queue.shift
+    level_order(current, queue, result.push(current.data), &block)
+  end
+
   private
+
+  def level_order_results(result, &block)
+    block_given? ? result.each { |value| block.call(value) } : result.join(', ')
+  end
 
   def smallest_tree_value(root_node)
     left_most = root_node
