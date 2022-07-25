@@ -14,6 +14,12 @@ puts ''
 tree.pretty_print
 
 puts '-' * 20
+puts 'Inerting 100'
+tree.insert(100)
+puts ''
+tree.pretty_print
+
+puts '-' * 20
 puts 'Inserting 18'
 tree.insert(18)
 puts ''
@@ -45,6 +51,6 @@ tree.delete(0)
 tree.pretty_print
 
 puts '-' * 20
-puts 'Delete 24'
-tree.delete(24)
+puts 'Delete 8'
+tree.delete(8)
 tree.pretty_print

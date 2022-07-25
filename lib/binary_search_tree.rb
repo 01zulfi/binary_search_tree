@@ -30,18 +30,21 @@ class Tree
     current_node.less_than_value?(value) ? insert(value, current_node.right) : insert(value, current_node.left)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def delete(value, node = @root)
-    if node.greater_than_value?(value )
-      node.left = delete(value, node.left)
-    elsif node.less_than_value?(value)
-      node.right = delete(value, node.right)
-    else
-      return node.right if left_empty?(node)
+    node.left = delete(value, node.left) if node.greater_than_value?(value)
+    node.right = delete(value, node.right) if node.less_than_value?(value)
 
+    if node.equal_to_value?(value)
+      return node.right if left_empty?(node)
       return node.left  if right_empty?(node)
+
+      node.data = smallest_tree_value(node.right)
+      delete(node.data, node.right)
     end
     node
   end
+  # rubocop:enable Metrics/AbcSize
 
   def find(value, node = @root)
     return node if empty_root? || node.equal_to_value?(value)
@@ -52,6 +55,12 @@ class Tree
   end
 
   private
+
+  def smallest_tree_value(root_node)
+    left_most = root_node
+    left_most = left_most.left until left_most.left.nil?
+    left_most.data
+  end
 
   def empty_root?
     @root.nil? || @root.data.nil?
